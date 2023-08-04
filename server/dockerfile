@@ -1,0 +1,20 @@
+FROM node:16-buster
+
+# Created an application directory
+RUN mkdir -p /usr/src/app
+
+# Change Directory into directory
+WORKDIR /usr/src/app
+
+# Copy the app package and package-lock.json file
+COPY package*.json /usr/src/app/
+
+# Install app dependencies
+RUN npm install
+
+# Bundle app source
+COPY . /usr/src/app/
+
+EXPOSE 5000
+
+CMD [ "npm", "start" ]
