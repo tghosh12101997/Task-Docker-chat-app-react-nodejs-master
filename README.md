@@ -50,5 +50,9 @@ Open another terminal in folder, Also make sure mongodb is running in background
 cd server
 yarn start
 ```
+To Deploy the app, kindly open the terminal in your IDE and apply the following code.
+```shell
+docker-compose up
+```
 
 Done! Now open localhost:3000 in your browser.
