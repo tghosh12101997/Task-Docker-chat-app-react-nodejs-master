@@ -17,23 +17,23 @@ services:
     depends_on:
       - mongo
     env_file: ./server/.env
-    #networks:
-    #  - express-mongo
-    #  - react-express
+    networks:
+      - express-mongo
+      - react-express
 
   mongo:
     container_name: mongo
     restart: always
     image: mongo:4.2.0
     volumes:
-      - ./data:/data/db
-    #networks:
-    #  - express-mongo
+      - mongo-data:/data/db
+    networks:
+      - express-mongo
     expose:
       - 27017
 
   frontend:
-    # build: clientter
+    
     build:
       context: ./public
       dockerfile: dockerfile
@@ -46,14 +46,14 @@ services:
     volumes:
       - ./public:/usr/app
       - /usr/app/node_modules
-    #networks:
-    #  - react-express
+    networks:
+      - react-express
     depends_on:
       - backend
 
-#networks:
-#  react-express:
-#  express-mongo:
+networks:
+  react-express:
+  express-mongo:
 volumes:
   mongo-data:
     driver: local
